@@ -1,0 +1,91 @@
+/* Mengatur gaya dasar seluruh halaman */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    margin: 0;
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Membungkus isi utama dalam kotak rapi */
+  .container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  /* Judul halaman */
+  h1 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Input, dropdown, dan tombol agar seragam */
+  input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  /* Tombol konversi dengan warna menarik */
+  button {
+    background-color: #2e86de;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #1b4f72;
+  }
+  
+  /* Tempat hasil tampil */
+  #hasil {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #2c3e50;
+  }
+  
+  /* Tambahan untuk tombol reset agar tampil serasi */
+button + button {
+    margin-top: 10px;
+    background-color: #e74c3c;
+  }
+  
+  button + button:hover {
+    background-color: #c0392b;
+  }
+  
+  /* Daftar riwayat */
+  #riwayat {
+    text-align: left;
+    margin-top: 10px;
+    padding-left: 20px;
+    color: #555;
+  }
+
+  body.dark-mode {
+    background-color: #1c1c1c;
+    color: white;
+  }
+  
+  body.dark-mode .container {
+    background-color: #2c2c2c;
+  }
+  
+  canvas {
+    background-color: #fff;
+    margin-top: 20px;
+    border-radius: 10px;
+  }
+  
