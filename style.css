@@ -59,11 +59,11 @@ body {
   /* Tambahan untuk tombol reset agar tampil serasi */
 button + button {
     margin-top: 10px;
-    background-color: #e74c3c;
+    background-color: #210483;
   }
   
   button + button:hover {
-    background-color: #c0392b;
+    background-color: #210483;
   }
   
   /* Daftar riwayat */
