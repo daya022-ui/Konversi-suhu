@@ -7,44 +7,29 @@
   <link rel="stylesheet" href="style.css"> <!-- menghubungkan ke file CSS -->
 </head>
 <body>
-  <div class="container">
-    <h1>Konversi Suhu</h1>
-
-    <!-- Input untuk suhu -->
-    <input type="number" id="inputSuhu" placeholder="Masukkan suhu">
-
-    <!-- Pilihan satuan suhu -->
-    <select id="satuan">
-      <option value="celcius">Celcius</option>
-      <option value="fahrenheit">Fahrenheit</option>
-      <option value="kelvin">Kelvin</option>
-      <option value="reamur">Reamur</option>
-    </select>
-
-    <!-- Tombol untuk konversi -->
-    <button onclick="konversiSuhu()">Konversi</button>
-
-    <!-- Tempat hasil konversi akan ditampilkan -->
-    <div id="hasil"></div>
-  </div>
-
-  <!-- Menghubungkan ke file JavaScript -->
-  <script src="script.js"></script>
-</body>
+    <div class="container">
+      <h1>Konversi Suhu</h1>
+  
+      <input type="number" id="inputSuhu" placeholder="Masukkan suhu">
+      <select id="satuan">
+        <option value="celcius">Celcius</option>
+        <option value="fahrenheit">Fahrenheit</option>
+        <option value="kelvin">Kelvin</option>
+        <option value="reamur">Reamur</option>
+      </select>
+      <button onclick="konversiSuhu()">Konversi</button>
+      <button onclick="resetForm()">Reset</button>
+  
+      <div id="hasil"></div>
+      <h3>Riwayat Konversi</h3>
+      <ul id="riwayat"></ul>
+  
+      <canvas id="grafikSuhu" width="400" height="250" style="margin-top:20px;"></canvas>
+      <button onclick="downloadRiwayat()">Download Riwayat</button>
+      <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    </div>
+  
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
-
-<!-- Tambahkan setelah tombol "Konversi" -->
-<button onclick="resetForm()">Reset</button>
-
-<!-- Tambahkan ini di bawah hasil -->
-<h3>Riwayat Konversi</h3>
-<ul id="riwayat"></ul>
-
-<!-- Tombol Dark Mode -->
-<button onclick="toggleDarkMode()">Toggle Dark Mode</button>
-
-<!-- Tempat untuk grafik -->
-<canvas id="grafikSuhu" width="400" height="250" style="margin-top:20px;"></canvas>
-
-<!-- Tombol download riwayat -->
-<button onclick="downloadRiwayat()">Download Riwayat</button>
