@@ -159,5 +159,3 @@ function konversiSuhu() {
     link.download = "riwayat-konversi.txt";
     link.click();
   }
-
-  
