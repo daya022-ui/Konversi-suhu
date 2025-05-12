@@ -1,119 +1,246 @@
-/* Mengatur gaya dasar seluruh halaman */
+
+
+/* Gaya dasar seluruh halaman */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f4f8;
-    margin: 0;
-    padding: 50px;
-    display: flex;
-    justify-content: center;
-  }
-  
-  /* Membungkus isi utama dalam kotak rapi */
-  .container {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-  }
-  
-  /* Judul halaman */
-  h1 {
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  /* Input, dropdown, dan tombol agar seragam */
-  input, select, button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    font-size: 16px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-  }
-  
-  /* Tombol konversi dengan warna menarik */
-  button {
-    background-color: #2e86de;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #1b4f72;
-  }
-  
-  /* Tempat hasil tampil */
-  #hasil {
-    margin-top: 20px;
-    font-weight: bold;
-    color: #2c3e50;
-  }
-  
-  /* Tambahan untuk tombol reset agar tampil serasi */
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(270deg, #0b1a4d, #142d6c, #0b1a4d);
+  background-size: 600% 600%;
+  animation: backgroundShift 30s ease infinite;
+  margin: 0;
+  padding: 50px 20px; /* Padding horizontal lebih kecil untuk responsivitas */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Tambahkan agar konten benar-benar di tengah */
+  min-height: 100vh;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* Animasi latar belakang */
+@keyframes backgroundShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Container */
+.container {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  animation: fadeInPage 1s ease-in-out;
+}
+
+/* Animasi munculnya konten */
+@keyframes fadeInPage {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Judul */
+h1 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+/* Subjudul */
+h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+/* Input, dropdown, tombol */
+input, select, button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+/* Tombol umum */
+button {
+  font-weight: bold;
+  background-color: #00217c;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #00217c;
+  transform: scale(1.05);
+}
+
+/* Tombol reset (khusus urutan kedua dst) */
 button + button {
-    margin-top: 10px;
-    background-color: #210483;
-  }
-  
-  button + button:hover {
-    background-color: #210483;
-  }
-  
-  h3 {
-    font-size: 28px; /* Samakan dengan default ukuran h1 */
-    font-weight: bold;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    color: #333;
-  }
+  background-color: #4b0082;
+  margin-top: 10px;
+}
 
-  /* Daftar riwayat */
-  #riwayat {
-    text-align: left;
-    margin-top: 10px;
-    padding-left: 20px;
-    font-weight: bold;
-    color: #2c3e50;
-  }
+button + button:hover {
+  background-color: #370061;
+}
 
-  body.dark-mode {
-    background-color: #1c1c1c;
-    color: white;
-  }
-  
-  body.dark-mode .container {
-    background-color: #2c2c2c;
-  }
+/* Tampilan hasil konversi */
+#hasil {
+  margin-top: 20px;
+  font-weight: bold;
+  color: #d2d2d2;
+}
 
-  body.dark-mode h1,
-  body.dark-mode h3 {
-    color: #ffffff;
-  }
+/* Riwayat konversi */
+#riwayat {
+  text-align: left;
+  margin-top: 10px;
+  padding: 10px 15px;
+  min-height: 200px;
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 8px;
+  font-weight: 500;
+  overflow-y: auto;
+  color: #fff;
+}
 
-  body.dark-mode #hasil {
-    margin-top: 20px;
-    font-weight: bold;
-    color: white;
-  }
+/* Mode gelap */
 
-  body.dark-mode #riwayat {
-    text-align: left;
-    margin-top: 10px;
-    padding-left: 20px;
-    font-weight: bold;
-    color: white;
-  }
+/* Efek untuk input suhu dan dropdown suhu di dark mode */
+body.dark-mode input,
+body.dark-mode select {
+  background-color: #444;
+  color: white;
+  border: 1px solid #666;
+  transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
 
-  canvas {
-    background-color: #fff;
-    margin-top: 20px;
-    border-radius: 10px;
+/* Efek untuk placeholder input suhu di dark mode */
+body.dark-mode input::placeholder {
+  color: #bbb;
+}
+
+/* Efek untuk tombol dalam dark mode */
+body.dark-mode button {
+  background-color: #444;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+body.dark-mode button:hover {
+  background-color: #666;
+}
+
+/* Efek border untuk input dan select saat dark mode */
+body.dark-mode input:focus,
+body.dark-mode select:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+/* Transisi untuk perubahan warna latar belakang dan teks */
+body {
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Efek dark mode pada body */
+body.dark-mode {
+  background-color: #1c1c1c;
+  color: white;
+}
+
+/* Transisi untuk container */
+body.dark-mode .container {
+  background-color: #2c2c2c;
+  transition: background-color 0.5s ease;
+}
+
+/* Transisi untuk judul */
+body.dark-mode h1,
+body.dark-mode h3 {
+  color: #ffffff;
+  transition: color 0.5s ease;
+}
+
+/* Transisi untuk hasil konversi */
+body.dark-mode #hasil {
+  color: white;
+  transition: color 0.5s ease;
+}
+
+/* Transisi untuk riwayat konversi */
+body.dark-mode #riwayat {
+  color: white;
+  transition: color 0.5s ease;
+}
+
+/* Tombol konversi dan reset */
+body.dark-mode button {
+  background-color: #444;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+body.dark-mode button:hover {
+  background-color: #666;
+}
+
+body.dark-mode button + button {
+  background-color: #4a1461;
+}
+
+body.dark-mode button + button:hover {
+  background-color: #3b0c4f;
+}
+
+
+body.dark-mode canvas {
+  background-color: #333 !important;  /* Hitam */
+  border: 1px solid #333;
+}
+
+
+/* Area grafik (jika ada canvas) */
+canvas {
+  background-color: #fff;
+  margin-top: 20px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+/* Responsif tambahan */
+@media (max-width: 480px) {
+  .container {
+    padding: 20px;
   }
-  
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Efek fade untuk transisi antar halaman */
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+body {
+  background-color: #f0f4f8; /* atau latar dark mode default */
+}
+body.dark-mode {
+  background-color: #1c1c1c;
+}
+

@@ -139,7 +139,13 @@ function konversiSuhu() {
 
     // Toggle dark mode
     function toggleDarkMode() {
-        document.body.classList.toggle("dark-mode");
+      const body = document.body;
+      const toggleBtn = document.getElementById("darkModeToggle");
+  
+      body.classList.toggle("dark-mode");
+  
+      const isDark = body.classList.contains("dark-mode");
+      toggleBtn.textContent = isDark ? "Light Mode" : "Dark Mode";
     }
     
     // Data untuk grafik
@@ -159,3 +165,9 @@ function konversiSuhu() {
     link.download = "riwayat-konversi.txt";
     link.click();
   }
+  
+  // Tambahkan class untuk memulai animasi saat halaman selesai dimuat
+window.addEventListener("load", function () {
+  document.body.classList.add("page-loaded");
+});
+

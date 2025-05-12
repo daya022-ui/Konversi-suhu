@@ -1,37 +1,219 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Konversi Suhu</title>
-  <link rel="stylesheet" href="style.css"> <!-- menghubungkan ke file CSS -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Konversi Suhu - Selamat Datang</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+    * { box-sizing: border-box; }
+    body, html {
+      margin: 0; padding: 0; height: 100%;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(270deg, #0b1a4d, #142d6c, #0b1a4d);
+      color: #fff;
+      background-size: 600% 600%;
+      animation: backgroundShift 30s ease infinite;
+      overflow-x: hidden;
+      position: relative;
+    }
+    @keyframes backgroundShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .floating-dots {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      top: 0; left: 0;
+      z-index: 0;
+    }
+    .dot {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(136, 202, 255, 0.15);
+      box-shadow: 0 0 12px 4px rgba(136, 202, 255, 0.4);
+      animation: floatUpDown 6s ease-in-out infinite;
+      opacity: 0.8;
+    }
+    @keyframes floatUpDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    .fullscreen-container {
+      position: relative;
+      height: 100vh;
+      max-width: 350px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 15px 30px 15px;
+      animation: fadeIn 1.5s ease forwards;
+      opacity: 0;
+      z-index: 1;
+    }
+    .fade-out {
+      opacity: 0;
+      transform: scale(0.95);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    @keyframes fadeIn { to { opacity: 1; } }
+    h1 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 0.25em;
+      letter-spacing: 3px;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      filter: drop-shadow(0 0 6px rgba(255,255,255,0.7));
+    }
+    h1 svg {
+      margin-right: 10px;
+      width: 30px;
+      height: 30px;
+      fill: #ffffffcc;
+      filter: drop-shadow(0 0 4px #88caff);
+      transition: fill 0.3s ease;
+    }
+    h1:hover svg {
+      fill: #88caff;
+    }
+    h1::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 3px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, #88caff, #4b79ca, #88caff);
+      animation: glowLine 2.5s ease infinite;
+    }
+    @keyframes glowLine {
+      0%, 100% { filter: drop-shadow(0 0 6px #88caff); opacity: 1; }
+      50% { filter: drop-shadow(0 0 15px #4b79ca); opacity: 0.6; }
+    }
+    p.subtitle {
+      font-size: 1.1rem;
+      color: #d2d2d2;
+      margin-top: 0;
+      margin-bottom: 1.75em;
+      line-height: 1.4;
+      filter: drop-shadow(0 0 5px rgba(0,0,0,0.4));
+    }
+    .gauge-icon {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 1.5em;
+      filter: drop-shadow(0 0 8px #88caff);
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { filter: drop-shadow(0 0 8px #88caff); }
+      50% { filter: drop-shadow(0 0 20px #4b79ca); }
+    }
+    button.start-btn {
+      font-size: 1.15rem;
+      padding: 14px 40px;
+      background: #ffffff;
+      border: none;
+      border-radius: 40px;
+      font-weight: 700;
+      color: #0b1a4d;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(255,255,255,0.6);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.5s ease;
+      width: 100%;
+      max-width: 300px;
+      animation: bounceUpDown 2.5s infinite ease-in-out;
+    }
+    button.start-btn:hover {
+      background: #e6e6e6;
+      box-shadow: 0 12px 28px rgba(230,230,230,0.96);
+      transform: scale(1.05);
+      animation-play-state: paused;
+    }
+    button.start-btn:active {
+      transform: scale(0.98);
+      animation-play-state: paused;
+    }
+    @keyframes bounceUpDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .tip-text {
+      margin-top: 18px;
+      font-size: 0.95rem;
+      color: #cdd9e8cc;
+      font-style: italic;
+      max-width: 280px;
+      filter: drop-shadow(0 0 3px rgba(0,0,0,0.3));
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-      <h1>Konversi Suhu</h1>
+  <div class="floating-dots" aria-hidden="true">
+    <div class="dot" style="top: 20%; left: 10%; width: 12px; height: 12px; animation-delay: 0s;"></div>
+    <div class="dot" style="top: 35%; left: 80%; width: 14px; height: 14px; animation-delay: 1.2s;"></div>
+    <div class="dot" style="top: 60%; left: 25%; width: 10px; height: 10px; animation-delay: 2.5s;"></div>
+    <div class="dot" style="top: 75%; left: 70%; width: 16px; height: 16px; animation-delay: 3.7s;"></div>
+    <div class="dot" style="top: 45%; left: 50%; width: 11px; height: 11px; animation-delay: 5s;"></div>
+  </div>
+
+  <div class="fullscreen-container" role="main">
+    <h1>
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14 14.76v-4.51a2 2 0 0 0-4 0v4.51A3.5 3.5 0 1 0 14 14.76zM12 2a2 2 0 0 1 2 2v6.14l.67.36a1 1 0 0 1-.67 1.84A1 1 0 0 1 12 12V4a.5.5 0 0 0-1 0v8a1 1 0 0 1-2 .1 1 1 0 0 1 .57-1.88l.89-.48V4a2 2 0 0 1 2-2Z"/>
+      </svg>
+      Konverter Suhu
+    </h1>
+    <p class="subtitle">Mudah mengubah suhu antara Celsius, Fahrenheit, dan Kelvin.</p>
+
+    <svg class="gauge-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" stroke="#88caff" stroke-width="3" />
+      <path d="M32 10v22l14 14" stroke="#88caff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="32" cy="32" r="5" fill="#88caff"/>
+    </svg>
+
+    <a href="konversi.html">
+        <button class="start-btn" id="mulaiBtn" aria-label="Mulai aplikasi konversi suhu">Mulai Konversi</button>
+    </a>
+
+    <div class="tip-text">Tips: Kamu bisa mengonversi skala suhu apa pun dengan mudah!</div>
+  </div>
+
+  <script>
+    // Tangkap semua link
+    document.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", function (e) {
+        // Cek apakah link-nya bukan anchor ke dalam halaman
+        if (link.href && !link.href.includes("#")) {
+          e.preventDefault();
+          document.body.classList.add("fade-out");
   
-      <input type="number" id="inputSuhu" placeholder="Masukkan suhu">
-      <select id="satuan">
-        <option value="celcius">Celcius</option>
-        <option value="fahrenheit">Fahrenheit</option>
-        <option value="kelvin">Kelvin</option>
-        <option value="reamur">Reamur</option>
-      </select>
-      <button onclick="konversiSuhu()">Konversi</button>
-      <button onclick="resetForm()">Reset</button>
+          // Setelah animasi selesai (500ms), pindah halaman
+          setTimeout(() => {
+            window.location.href = link.href;
+          }, 500);
+        }
+      });
+    });
   
-      <div id="hasil"></div>
-      <h3>Riwayat Konversi</h3>
-      <ul id="riwayat"></ul>
+    // Set fade-in saat halaman dimuat
+    window.addEventListener("DOMContentLoaded", () => {
+      document.body.style.opacity = 0;
+      document.body.style.transition = "opacity 0.5s ease-in-out";
+      requestAnimationFrame(() => {
+        document.body.style.opacity = 1;
+      });
+    });
+  </script>
   
-      <canvas id="grafikSuhu" width="400" height="250" style="margin-top:20px;"></canvas>
-      <button onclick="downloadRiwayat()">Download Riwayat</button>
-      <button onclick="toggleDarkMode()">Dark Mode</button>
-    </div>
-  
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="script.js"></script>
-  </body>
+</body>
 </html>
-
-

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Konversi Suhu</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Konversi Suhu</h1>
+
+    <input type="number" id="inputSuhu" placeholder="Masukkan suhu">
+    <select id="satuan">
+      <option value="celcius">Celcius</option>
+      <option value="fahrenheit">Fahrenheit</option>
+      <option value="kelvin">Kelvin</option>
+      <option value="reamur">Reamur</option>
+    </select>
+    <button onclick="konversiSuhu()">Konversi</button>
+    <button onclick="resetForm()">Reset</button>
+
+    <div id="hasil"></div>
+    <h3>Riwayat Konversi</h3>
+    <ul id="riwayat"></ul>
+
+    <canvas id="grafikSuhu" width="400" height="250" style="margin-top:20px;"></canvas>
+    <button onclick="downloadRiwayat()">Download Riwayat</button>
+    <button id="darkModeToggle" onclick="toggleDarkMode()">Dark Mode</button>
+  </div>
+  <div id="halaman1" class="page active">
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
